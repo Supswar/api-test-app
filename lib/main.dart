@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:sqflite/sqflite.dart';
@@ -28,21 +26,20 @@ class _HomePageState extends State<HomePage> {
     
     http.Response response = await http.post(
       Uri.parse("http://13.68.210.77:8080/api/v1/ManagerRequest/GetContactPaged"),
-      body: { 
+      body: jsonEncode({ 
       "UserData" : "1611", "SearchText": ""
-      },
+      }),
       headers:{
         'Authorization':'Bearer $token',
       });
-      debugPrint(response.body);
+      debugPrint("Response aaya : ${response.body}");
       data = jsonDecode(response.body);
   }
 
   @override
   void initState() {
-    // TODO: implement initState
-    super.initState();
     postData();
+    super.initState();
   }
 
 
